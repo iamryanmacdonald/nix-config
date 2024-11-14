@@ -32,6 +32,7 @@
         specialArgs =
           inputs
           // {
+            myvars.initialHashedPassword = "$7$CU..../....rXsJS9iKCfbKKvOcFKmQA.$nln7KPAYBfH/T4b.pAdhgiyYQJj5Z3HqzVf9ymtZ3A8";
             myvars.userfullname = "Ryan Macdonald";
             myvars.username = "ryan";
           };

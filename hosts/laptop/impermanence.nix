@@ -1,4 +1,4 @@
-{ impermanence, ... }: {
+{ impermanence, pkgs, ... }: {
   imports = [
     impermanence.nixosModules.impermanence
   ];
