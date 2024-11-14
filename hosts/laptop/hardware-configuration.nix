@@ -15,8 +15,35 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  # clear /tmp on boot to get a stateless /tmp directory.
+  boot.tmp.cleanOnBoot = true;
 
-  boot.initrd.luks.devices."crypted-nixos".device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+  boot.initrd = {
+    luks.devices."crypted-nixos" = {
+      # NOTE: DO NOT use device name here(like /dev/sda, /dev/nvme0n1p2, etc), use UUID instead.
+      # https://github.com/ryan4yin/nix-config/issues/43
+      device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+      # the keyfile(or device partition) that should be used as the decryption key for the encrypted device.
+      # if not specified, you will be prompted for a passphrase instead.
+      #keyFile = "/root-part.key";
+
+      # whether to allow TRIM requests to the underlying device.
+      # it's less secure, but faster.
+      allowDiscards = true;
+      # Whether to bypass dm-crypt’s internal read and write workqueues.
+      # Enabling this should improve performance on SSDs;
+      # https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Disable_workqueue_for_increased_solid_state_drive_(SSD)_performance
+      bypassWorkqueues = true;
+    };
+  };
+
+  fileSystems."/btr_pool" = {
+    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    fsType = "btrfs";
+    # btrfs' top-level subvolume, internally has an id 5
+    # we can access all other subvolumes from this subvolume.
+    options = ["subvolid=5"];
+  };
 
   fileSystems."/" = {
     device = "tmpfs";
@@ -62,7 +89,7 @@
   fileSystems."/swap" = {
     device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
     fsType = "btrfs";
-    options = [ "subvol=@nix" "ro" ];
+    options = [ "subvol=@swap" "ro" ];
   };
 
   # remount swapfile in read-write mode.
@@ -78,7 +105,6 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/3E10-95FE";
     fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
   };
 
   swapDevices = [
