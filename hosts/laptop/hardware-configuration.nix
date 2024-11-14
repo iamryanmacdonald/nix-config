@@ -11,6 +11,8 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.systemd-boot.enable = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -22,7 +24,7 @@
     luks.devices."crypted-nixos" = {
       # NOTE: DO NOT use device name here(like /dev/sda, /dev/nvme0n1p2, etc), use UUID instead.
       # https://github.com/ryan4yin/nix-config/issues/43
-      device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+      device = "/dev/disk/by-uuid/488d22ec-24a8-46d9-aa26-be232c083326";
       # the keyfile(or device partition) that should be used as the decryption key for the encrypted device.
       # if not specified, you will be prompted for a passphrase instead.
       #keyFile = "/root-part.key";
@@ -38,7 +40,7 @@
   };
 
   fileSystems."/btr_pool" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     # btrfs' top-level subvolume, internally has an id 5
     # we can access all other subvolumes from this subvolume.
@@ -54,19 +56,19 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     options = [ "subvol=@nix" "noatime" "compress-force=zstd:1" ];
   };
 
   fileSystems."/gnu" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     options = [ "subvol=@guix" "noatime" "compress-force=zstd:1" ];
   };
 
   fileSystems."/persistent" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     options = [ "subvol=@persistent" "compress-force=zstd:1" ];
     # impermanence's data is required for booting.
@@ -74,20 +76,20 @@
   };
 
   fileSystems."/snapshots" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     options = [ "subvol=@snapshots" "compress-force=zstd:1" ];
   };
 
   fileSystems."/tmp" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     options = [ "subvol=@tmp" "compress-force=zstd:1" ];
   };
 
   # mount swap subvolume in readonly mode.
   fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
+    device = "/dev/disk/by-uuid/f48830a8-13d9-4059-a090-cc5588ff07a1";
     fsType = "btrfs";
     options = [ "subvol=@swap" "ro" ];
   };
@@ -103,7 +105,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3E10-95FE";
+    device = "/dev/disk/by-uuid/BF90-0B10";
     fsType = "vfat";
   };
 
