@@ -1,4 +1,4 @@
-{ myvars, ... }:{
+{ config, myvars, ... }:{
   # Don't allow mutation of users outside of config.
   users.mutableUsers = false;
 
@@ -19,5 +19,10 @@
     ];
     home = "/home/${myvars.username}";
     isNormalUser = true;
+  };
+
+  # root's SSH key is mainly used for remote deployment
+  users.users.root = {
+    initialHashedPassword = config.users.users."${myvars.username}".initialHashedPassword;
   };
 }

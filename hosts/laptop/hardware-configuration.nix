@@ -14,11 +14,11 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = { };
+  boot.extraModulePackages = [ ];
 
   boot.initrd.luks.devices."crypted-nixos".device = "/dev/disk/by-uuid/52f02ca2-94b3-47da-afcd-219a2eb2bbca";
 
-  filesystems."/" = {
+  fileSystems."/" = {
     device = "tmpfs";
     fsType = "tmpfs";
     # set mode to 755, otherwise systemd will set it to 777, which causes problems.
