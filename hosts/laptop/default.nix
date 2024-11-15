@@ -1,4 +1,4 @@
-{ myvars, ... }: let
+{myvars, ...}: let
   hostName = "laptop";
 in {
   imports = [
@@ -9,7 +9,7 @@ in {
 
   networking = {
     inherit hostName;
-    inherit (myvars.networking) defaultGateway nameservers;
+    inherit (myvars.networking) nameservers;
 
     # desktop needs a CLI for the status bar
     networkmanager.enable = true;

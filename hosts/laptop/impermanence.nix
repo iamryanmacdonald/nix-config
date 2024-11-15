@@ -1,4 +1,8 @@
-{ impermanence, pkgs, ... }: {
+{
+  impermanence,
+  pkgs,
+  ...
+}: {
   imports = [
     impermanence.nixosModules.impermanence
   ];
@@ -51,6 +55,15 @@
         "Music"
         "Pictures"
         "Videos"
+
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
+
+        # neovim / ...
+        ".local/share"
+        ".local/state"
       ];
     };
   };

@@ -6,7 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
-  
+
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -23,6 +23,8 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur-ryan4yin.url = "github:ryan4yin/nur-packages";
   };
 
   outputs = inputs: import ./outputs inputs;
