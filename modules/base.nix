@@ -11,6 +11,7 @@
     git # used by nix flakes
 
     # misc
+    rsync
     which
 
     # networking tools
