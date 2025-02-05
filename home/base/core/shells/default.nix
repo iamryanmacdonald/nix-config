@@ -1,5 +1,14 @@
-{pkgs-unstable, ...}: {
+{
+  config,
+  pkgs-unstable,
+  ...
+}: let
+  localBin = "${config.home.homeDirectory}/.local/bin";
+in {
   programs.bash = {
+    bashrcExtra = ''
+      export PATH=$PATH:${localBin}
+    '';
     enable = true;
     enableCompletion = true;
   };

@@ -1,11 +1,18 @@
 {
+  anyrun,
   config,
   lib,
+  pkgs,
   ...
 } @ args:
 with lib; let
   cfg = config.modules.desktop.hyprland;
 in {
+  imports = [
+    anyrun.homeManagerModules.default
+    ./options
+  ];
+
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland compositor";
     settings = lib.mkOption {

@@ -1,4 +1,8 @@
-{ inputs, lib, ... } @ args: let
+{
+  inputs,
+  lib,
+  ...
+} @ args: let
   inherit (inputs) haumea;
 
   # Contains all the flake outpts of this system architecture.
@@ -18,4 +22,10 @@ in
   outputs
   // {
     inherit data; # for debugging purposes
+
+    # NixOS unit tests.
+    evalTests = haumea.lib.loadEvalTests {
+      inputs = args // {inherit outputs;};
+      src = ./tests;
+    };
   }

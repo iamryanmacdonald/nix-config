@@ -10,6 +10,27 @@ utils_nu := absolute_path("utils.nu")
 
 ############################################################################
 #
+#  Common commands(suitable for all machines)
+#
+############################################################################
+
+# List all the just commands
+default:
+  @just --list
+
+# Run eval tests
+[group('nix')]
+test:
+  nix eval .#evalTests --show-trace --print-build-logs --verbose
+
+# Update specific input
+# Usage: just upp nixpkgs
+[group('nix')]
+upp input:
+  nix flake update {{input}}
+
+############################################################################
+#
 # NixOS Desktop related commands
 #
 ############################################################################

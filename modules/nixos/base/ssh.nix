@@ -16,7 +16,7 @@
     enable = true;
     openFirewall = true;
     settings = {
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
       # root user is used for remote deployment, so we need to allow it
       PermitRootLogin = "prohibit-password";
       X11Forwarding = true;

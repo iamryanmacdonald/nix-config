@@ -33,6 +33,8 @@
       "/etc/nix/inputs"
       "/etc/secureboot" # lanzaboote - secure boot
       "/etc/ssh"
+      # my secrets
+      "/etc/agenix"
 
       "/var/log"
       "/var/lib"
@@ -57,13 +59,23 @@
         "Videos"
 
         {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        {
           directory = ".ssh";
           mode = "0700";
         }
 
+        # misc
+        ".config/pulse"
+
         # neovim / ...
         ".local/share"
         ".local/state"
+      ];
+      files = [
+        ".config/nushell/history.txt"
       ];
     };
   };

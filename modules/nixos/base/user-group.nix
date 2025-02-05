@@ -1,4 +1,8 @@
-{ config, myvars, ... }:{
+{
+  config,
+  myvars,
+  ...
+}: {
   # Don't allow mutation of users outside of config.
   users.mutableUsers = false;
 

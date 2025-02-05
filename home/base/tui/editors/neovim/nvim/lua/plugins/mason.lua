@@ -26,6 +26,10 @@ return {
     end,
   },
   {
+    -- https://docs.astronvim.com/recipes/dap/
+    "jay-babu/mason-nvim-dap.nvim",
+  },
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       -- Where mason should put it's bin location in your PATH. Can be one of:

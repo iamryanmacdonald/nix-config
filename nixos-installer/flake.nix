@@ -17,7 +17,7 @@
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         modules = [
-          { networking.hostName = "laptop"; }
+          {networking.hostName = "laptop";}
 
           ./configuration.nix
 

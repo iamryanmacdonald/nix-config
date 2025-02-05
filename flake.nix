@@ -16,6 +16,19 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
+    # anyrun - a wayland launcher
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryan4yin/ragenix";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nuenv.url = "github:DeterminateSystems/nuenv";
 
     haumea = {
@@ -25,6 +38,26 @@
     };
 
     nur-ryan4yin.url = "github:ryan4yin/nur-packages";
+
+    ########################  personal repositories  #########################################
+    mysecrets = {
+      url = "git+ssh://git@github.com/iamryanmacdonald/nix-secrets.git";
+
+      flake = false;
+    };
+  };
+
+  # the nixConfig here only affects the flake itself, not the system configuration!
+  # for more information, see:
+  #     https://nixos-and-flakes.thiscute.world/nix-store/add-binary-cache-servers
+  nixConfig = {
+    # substituers will be appended to the default substituters when fetching packages
+    extra-substituters = [
+      "https://anyrun.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+    ];
   };
 
   outputs = inputs: import ./outputs inputs;

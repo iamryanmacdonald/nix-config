@@ -3,6 +3,34 @@
   nur-ryan4yin,
   ...
 }: {
+  home.packages = with pkgs; [
+    # misc
+    gnumake
+    gnupg
+
+    delta # A viewer for git and diff output
+    doggo # DNS client for humans
+    duf # disk usage/free utility - a better 'df' alternative
+    gping # ping, with with a graph (TUI)
+    hyperfine # command-line benchmarking tool
+    just # a command runner like make, but simpler
+    lazygit # Git terminal UI
+
+    # nix related
+    nix-output-monitor
+    nix-index # A small utility to index nix store paths
+    nix-init # generate nix derivative from url
+    # https://github.com/nix-community/nix-melt
+    nix-melt # A TUI flake.lock viewer
+    # https://github.com/utdemir/nix-tree
+    nix-tree
+
+    # productivity
+    caddy # A webserver with automatic HTTPS via Let's Encrypt (replacement of nginx)
+    croc # File transfer between computers securely and easily
+    ncdu # analyze your disk usage interactively, via TUI (replacement of du)
+  ];
+
   programs = {
     # Atuin replaces your existing shell history with an SQLite database
     # and records additional context for your commands.

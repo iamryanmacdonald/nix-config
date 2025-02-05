@@ -1,4 +1,4 @@
-{ myvars, ... }: {
+{myvars, ...}: {
   home = {
     inherit (myvars) username;
 

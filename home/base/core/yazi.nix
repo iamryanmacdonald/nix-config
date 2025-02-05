@@ -11,6 +11,7 @@
     enableBashIntegration = true;
     enableNushellIntegration = true;
     package = pkgs-unstable.yazi;
+
     settings = {
       manager = {
         show_hidden = true;

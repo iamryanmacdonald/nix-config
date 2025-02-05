@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # ssh-agent is used to pull my private secrets repo from github when deploying my nixos config
   programs.ssh.startAgent = true;
 

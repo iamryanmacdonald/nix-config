@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+## simple script to pick colour quickly
+
+colour=$(grim -g "$(slurp -b 1B1F2800 -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n1 | cut -d' ' -f4)
+image=/tmp/${colour}.png
+
+main() {
+  if [[ "$color" ]]; then
+    # copy colour code to clipboard
+    echo $colour | tr -d "\n" | wl-copy
+    # generate preview
+    convert -size 48x48 xc:"$colour" ${image}
+    # notify about it
+    notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i ${image} "$colour, copied to clipboard."
+  fi
+}
+
+# run the script
+main
