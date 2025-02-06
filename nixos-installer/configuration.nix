@@ -18,5 +18,5 @@
     # configures the network interface (including wireless) via `nmcli` and `nmtui`
     networkmanager.enable = true;
   };
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }

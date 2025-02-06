@@ -2,7 +2,7 @@
   home = {
     inherit (myvars) username;
 
-    stateVersion = "24.05";
+    stateVersion = "24.11";
   };
 
   # Let home-manager install and manage itself.
