@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: let
+{pkgs, ...}: let
   shellAliases = {
     "zj" = "zellij";
   };
@@ -32,10 +28,7 @@ in {
 
   programs.zellij = {
     enable = true;
-    package =
-      if pkgs.stdenv.isLinux
-      then pkgs-stable.zellij
-      else pkgs.zellij;
+    package = pkgs.zellij;
   };
 
   xdg.configFile."zellij/config.kdl".source = ./config.kdl;
