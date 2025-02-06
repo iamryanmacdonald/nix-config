@@ -23,6 +23,11 @@ default:
 test:
   nix eval .#evalTests --show-trace --print-build-logs --verbose
 
+# Update all the flake inputs
+[group('nix')]
+up:
+  nix flake update
+
 # Update specific input
 # Usage: just upp nixpkgs
 [group('nix')]
