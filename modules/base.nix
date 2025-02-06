@@ -13,7 +13,11 @@
   nix.package = pkgs.nixVersions.latest;
 
   environment.systemPackages = with pkgs; [
+    # core tools
     git # used by nix flakes
+    just # justfile
+    neovim
+    nushell # nushell
 
     # misc
     rsync
@@ -24,6 +28,9 @@
     dnsutils # `dig` + `nslookup`
     wget
   ];
+
+  # For security reasons, do not load user config as it may be used to edit critical files.
+  environment.variables.EDITOR = "nvim --clean";
 
   users.users.${myvars.username} = {
     description = myvars.userfullname;
