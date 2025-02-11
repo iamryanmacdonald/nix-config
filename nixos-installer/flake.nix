@@ -15,6 +15,28 @@
     ...
   }: {
     nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
+        modules = [
+          {networking.hostName = "desktop";}
+
+          ./configuration.nix
+
+          ../modules/base.nix
+          ../modules/nixos/base/i18n.nix
+          ../modules/nixos/base/user-group.nix
+          ../modules/nixos/base/networking.nix
+
+          ../hosts/desktop/hardware-configuration.nix
+          ../hosts/desktop/impermanence.nix
+        ];
+        specialArgs =
+          inputs
+          // {
+            myvars.userfullname = "Ryan Macdonald";
+            myvars.username = "ryan";
+          };
+        system = "x86_64-linux";
+      };
       laptop = nixpkgs.lib.nixosSystem {
         modules = [
           {networking.hostName = "laptop";}
@@ -32,7 +54,6 @@
         specialArgs =
           inputs
           // {
-            myvars.initialHashedPassword = "$7$CU..../....rXsJS9iKCfbKKvOcFKmQA.$nln7KPAYBfH/T4b.pAdhgiyYQJj5Z3HqzVf9ymtZ3A8";
             myvars.userfullname = "Ryan Macdonald";
             myvars.username = "ryan";
           };
