@@ -42,6 +42,13 @@ upp input:
 
 [linux]
 [group('desktop')]
+d-hypr mode="default":
+  #!/usr/bin/env nu
+  use {{utils_nu}} *;
+  nixos-switch desktop-hyprland {{mode}}
+
+[linux]
+[group('desktop')]
 l-hypr mode="default":
   #!/usr/bin/env nu
   use {{utils_nu}} *;
