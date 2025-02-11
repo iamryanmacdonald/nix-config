@@ -4,7 +4,7 @@ in {
   imports = [
     ./hardware-configuration.nix
 
-    ./impermanence.nix
+    ../desktop/impermanence.nix
   ];
 
   networking = {

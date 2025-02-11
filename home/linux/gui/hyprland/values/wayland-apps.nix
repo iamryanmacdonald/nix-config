@@ -3,6 +3,12 @@
   pkgs,
   ...
 }: {
+  home.packages = [
+    pkgs.firefox-wayland
+    # pkgs.nixpaxs.firefox
+    # pkgs.nixpaxs.firefox-desktop-item
+  ];
+
   programs = {
     # a wayland only terminal emulator
     foot = {

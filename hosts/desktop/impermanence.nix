@@ -67,6 +67,9 @@
           mode = "0700";
         }
 
+        # browsers
+        ".mozilla"
+
         # misc
         ".config/pulse"
 
